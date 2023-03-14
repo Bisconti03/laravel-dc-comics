@@ -9,11 +9,7 @@
                 <div class="card-body">
                     
 
-                    <h1 class="card-title">Comics</h1>
-
-                    <a href="{{ route('comics.index') }}" class="btn btn-primary">
-                        Tutti i fumetti
-                    </a>
+                    <h1 class="card-title">Edit</h1>
                 </div>
             </div>
 
