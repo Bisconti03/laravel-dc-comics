@@ -17,7 +17,10 @@
         <div class="col text-center">
             <div class="card h-100">
                 <div class="card-body ">
+                    <p>{{ $comic->price }}</p>
+                    <p>{{ $comic->series }}</p>
                     <p>{{ $comic->description }}</p>
+                    <p>{{ $comic->type }}</p>
                     <a href="{{ route('comics.index') }}" class="btn btn-primary">
                         Tutti i fumetti
                     </a>

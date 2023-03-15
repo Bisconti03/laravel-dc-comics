@@ -19,7 +19,7 @@
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text">€</span>
-                    <input type="number" name="price" id="price" class="form-control" aria-label="Amount (to the nearest dollar)" required placeholder="Specifica il prezzo con due cifre dopo il . Es(7.99)">
+                    <input type="number" name="price" id="price" class="form-control" aria-label="Amount (to the nearest dollar)" required placeholder="">
                     
                   </div>
 
