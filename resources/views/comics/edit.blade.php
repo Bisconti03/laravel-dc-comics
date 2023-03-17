@@ -11,6 +11,17 @@
                 Torna indietro
             </a>
 
+            @if ($errors ->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+                
+            @endif
+            
             <form action="{{ route('comics.update', $comic->id) }}" method="POST">
                 @csrf
 
@@ -18,21 +29,21 @@
 
                 <div class="mb-3">
                     <label for="title" class="form-label">Titolo</label>
-                    <input type="text" class="form-control" name="title" id="title" required maxlength="255" value="{{ $comic->title }}" placeholder="Inserisci un Titolo">
+                    <input type="text" class="form-control" name="title" id="title" required maxlength="255" value="{{old('title', $comic->title) }}" placeholder="Inserisci un Titolo">
                 </div>
                 <div class="mb-3">
                     <label for="description" class="form-label">Crea una descrizione</label>
-                    <textarea class="form-control" name="description" id="description" rows="3" placeholder="Crea una descrizione">{{ $comic->description }}</textarea>
+                    <textarea class="form-control" name="description" id="description" rows="3" placeholder="Crea una descrizione">{{old('description', $comic->description) }}</textarea>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text">€</span>
-                    <input type="number" name="price" id="price" class="form-control" aria-label="Amount (to the nearest dollar)" value="{{ $comic->price }}" required placeholder="Specifica il prezzo con due cifre dopo il . Es(7.99)">
+                    <input type="number" name="price" id="price" class="form-control" aria-label="Amount (to the nearest dollar)" value="{{old('price', $comic->price) }}" required placeholder="Specifica il prezzo con due cifre dopo il . Es(7.99)">
                     
                   </div>
 
                 <div class="mb-3">
                     <label for="series" class="form-label">Serie</label>
-                    <input type="text" class="form-control" name="series" id="series" required maxlength="255"  value="{{ $comic->series }}" placeholder="Inserisci una Serie" required maxlength="64">
+                    <input type="text" class="form-control" name="series" id="series" required maxlength="255"  value="{{old('series', $comic->series) }}" placeholder="Inserisci una Serie" required maxlength="64">
                 </div>
 
                 <div class="mb-3">

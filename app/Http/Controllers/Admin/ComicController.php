@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 // Models
 use App\Models\Comic;
 
+// Helpers
+use Illuminate\Validation\Rule;
+
 class ComicController extends Controller
 {
     /**
@@ -42,7 +45,22 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
+        // Validation
+        $request->validate([
+            'title' => 'required|max:255',
+            'description' => 'required|max:2048',
+            'price' => 'required|numeric|min:1',
+            'series' => 'required|max:255',
+            'type' => [
+                'required',
+                Rule::in(['comic book', 'graphic novel'])
+            ]
+
+        ]); 
+
         $data = $request->all();
+
+
         $newComic = new Comic;
         $newComic->title= $data['title'];
         $newComic->description=$data['description'];
@@ -92,8 +110,22 @@ class ComicController extends Controller
     public function update(Request $request, $id)
     {
         $comic = Comic::findOrFail($id);
+         // Validation
+         $request->validate([
+            'title' => 'required|max:255',
+            'description' => 'required|max:2048',
+            'price' => 'required|numeric|min:1',
+            'series' => 'required|max:255',
+            'type' => [
+                'required',
+                Rule::in(['comic book', 'graphic novel'])
+            ]
+
+        ]); 
 
         $data = $request->all();
+
+        
 
         $comic->update($data);
 

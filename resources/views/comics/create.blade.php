@@ -7,25 +7,37 @@
 
             <h1>Crea un Fumetto</h1>
 
+
+            @if ($errors ->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+                
+            @endif
+
             <form action="{{ route('comics.store') }}" method="POST">
                 @csrf
                 <div class="mb-3">
                     <label for="title" class="form-label">Titolo</label>
-                    <input type="text" class="form-control" name="title" id="title" required maxlength="255" placeholder="Inserisci un Titolo">
+                    <input type="text" class="form-control" name="title" id="title" value="{{ old('title') }}" required maxlength="255" placeholder="Inserisci un Titolo">
                 </div>
                 <div class="mb-3">
                     <label for="description" class="form-label">Crea una descrizione</label>
-                    <input type="text" class="form-control" name="description" id="description" required maxlength="255" placeholder="Inserisci una descrizione">
+                    <textarea class="form-control" name="description" id="description" rows="3" placeholder="Crea una descrizione">{{ old('description') }}</textarea>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text">€</span>
-                    <input type="number" name="price" id="price" class="form-control" aria-label="Amount (to the nearest dollar)" required placeholder="">
+                    <input type="number" name="price" id="price" value="{{ old('price') }}" class="form-control" aria-label="Amount (to the nearest dollar)" required min="1" placeholder="">
                     
                   </div>
 
                 <div class="mb-3">
                     <label for="series" class="form-label">Serie</label>
-                    <input type="text" class="form-control" name="series" id="series" required maxlength="255" placeholder="Inserisci una Serie" required maxlength="64">
+                    <input type="text" class="form-control" name="series" id="series" value="{{ old('series') }}" required maxlength="255" placeholder="Inserisci una Serie" required maxlength="64">
                 </div>
 
                 <div class="mb-3">
